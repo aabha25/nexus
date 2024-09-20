@@ -2,12 +2,16 @@
 
 import Image from "next/image";
 import { SetStateAction,useState } from "react";
+import { DialogProvider, DialogContext } from './context/Context';
+import { useContext} from 'react';
+
 
 export default function Home() {
   return (
     <><></><Navbar />
-    
+    <DialogProvider>
     <table className="table1">
+      <tbody>
       <tr className="title1">
         <td>To Do <Addtask/></td>
         <td>Preparing</td>
@@ -15,10 +19,11 @@ export default function Home() {
         <td>In Progress</td>
         <td>Done</td>
       </tr>
-   
+      </tbody>
     </table>
 
-    <Todorow/><></></>
+    <Todorow/>
+    </DialogProvider><></></>
   );
 }
 function Todorow() {
@@ -27,14 +32,16 @@ function Todorow() {
  
   return(
     <table className="table2">
+<tbody>
        <tr className="title2">
-        <td>data </td>
+        <td><Notes/> </td>
         <td>data </td>
         <td>data </td>
         <td>data </td>
         <td>data </td>
     
         </tr> 
+        </tbody>
     </table>
    
   ) ;
@@ -57,7 +64,8 @@ function Navbar() {
 }
 
 function Addtask(){
-  const [response, setResponse] = useState("");
+  const { openDialog, handleClick, handleCloseDialog, response, updateResponse} = useContext(DialogContext);
+  /*const [response, setResponse] = useState("");
   const updateResponse = (event: { target: { value: SetStateAction<string>; }; }) => {
     setResponse(event.target.value);
   }
@@ -71,13 +79,13 @@ function Addtask(){
 
   const handleCloseDialog = () => {
     setOpen(false);
-  };
+  };*/
  
 
   return(
     
     <div>
-      <button id="add" onClick={addTask}>+</button>
+      <button id="add" onClick={handleClick}>+</button>
       {openDialog && (
         <div className="dialog-box">
          <h2 className="elem">Current Task</h2>
@@ -90,7 +98,7 @@ function Addtask(){
    
     </div>
           
-          <button onClick={handleCloseDialog}>Close</button>
+          <button onClick={handleCloseDialog}>Click to Add Task</button>
         </div>
       )}
     </div>
@@ -98,7 +106,17 @@ function Addtask(){
 
 
 }
-
+function Notes(){
+  const { taskList} = useContext(DialogContext);
+  return(
+   <ul>
+    {taskList.tasks.map( (task, i ) => 
+  
+  <li key={i} ><div style={{backgroundColor:"green",border: '1px solid #ddd', }}>{task}</div></li>
+    )}
+   </ul>
+  )
+}
 
 
 
