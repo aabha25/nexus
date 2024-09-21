@@ -10,10 +10,10 @@ export default function Home() {
   return (
     <><></><Navbar />
     <DialogProvider>
-    <table className="table1">
+    <table className="heading">
       <tbody>
       <tr className="title1">
-        <td>To Do <Addtask/></td>
+        <td id="todo">To Do <Addtask/></td>
         <td>Preparing</td>
         <td>Prepared</td>
         <td>In Progress</td>
@@ -31,7 +31,7 @@ function Todorow() {
   
  
   return(
-    <table className="table2">
+    <table className="content">
 <tbody>
        <tr className="title2">
         <td><Notes/> </td>
@@ -88,8 +88,8 @@ function Addtask(){
       <button id="add" onClick={handleClick}>+</button>
       {openDialog && (
         <div className="dialog-box">
-         <h2 className="elem">Current Task</h2>
-   <h3 className="elem">Click the note to start typing</h3>
+         <h2 className="elem" id="addtodo">Current Task</h2>
+   <h3 className="elem" id="type">Click the note to start typing</h3>
    
    <div className="stickynote">
    
@@ -98,7 +98,7 @@ function Addtask(){
    
     </div>
           
-          <button onClick={handleCloseDialog}>Click to Add Task</button>
+          <button id="close" onClick={handleCloseDialog}>Click to Add Task</button>
         </div>
       )}
     </div>
