@@ -39,7 +39,8 @@ const DialogProvider = ({ children }: { children: React.ReactNode }) => {
             tasks: ntasks,
         }
     )
-    setResponse("")
+    setResponse("");
+    
     setOpen(false); };
 
     const [response, setResponse] = useState("");

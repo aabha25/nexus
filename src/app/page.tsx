@@ -1,9 +1,13 @@
 'use client'
 
 import Image from "next/image";
+import blue from './blue.png';
+import post from './post.png';
+import post2 from './post2.jpg';
 import { SetStateAction,useState } from "react";
 import { DialogProvider, DialogContext } from './context/Context';
 import { useContext} from 'react';
+import { url } from "inspector";
 
 
 export default function Home() {
@@ -23,18 +27,32 @@ export default function Home() {
     </table>
 
     <Todorow/>
-    </DialogProvider><></></>
+    </DialogProvider>
+
+  
+    
+   
+    
+    <></></>
+
+    
   );
 }
 function Todorow() {
+   const {taskList} = useContext(DialogContext);
+   const len=(taskList.tasks.length)*200;
+   let string1;
+   string1=len.toString();
+   string1=string1+"px";
+
   
   
  
   return(
     <table className="content">
 <tbody>
-       <tr className="title2">
-        <td><Notes/> </td>
+       <tr className="title2" style={{height:string1}}>
+        <td id="postit"><Notes/> </td>
         <td>data </td>
         <td>data </td>
         <td>data </td>
@@ -109,10 +127,14 @@ function Addtask(){
 function Notes(){
   const { taskList} = useContext(DialogContext);
   return(
-   <ul>
+   <ul id="bluepostitbg">
     {taskList.tasks.map( (task, i ) => 
   
-  <li key={i} ><div style={{backgroundColor:"green",border: '1px solid #ddd', }}>{task}</div></li>
+  <li key={i} ><div  id="bluepostit" style={{backgroundImage: `url(${blue})`,
+  backgroundSize: 'cover',
+  
+ 
+  }}>{task}</div></li>
     )}
    </ul>
   )
