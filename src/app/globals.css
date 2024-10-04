@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,8 +7,14 @@
   --color1: #502907;
   --color2: #F9D2AF;
   --color3: rgba(65, 138, 195, 1);
+<<<<<<< HEAD
+=======
 }
-/* aabha */
+*{
+  background-color: var(--color3);
+  
+>>>>>>> 15710bb (dragging elements added)
+}
 .dialog-box {
   position: absolute;
   top: 50%;
@@ -144,19 +151,19 @@ a{
 
 /* table */
 
-.heading{
+.heading{  /*table of headings of columns*/
   display: flex;
   justify-content: center;
 }
 
-.title1{
+.title1{  /*indivisual titles boxes*/
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 
 }
 
-.title1 td{
-  height: 40px;
+.title1 td{  /*data in all titles*/
+  height: 45px;
   width: 150px;
   background-color: var(--color1);
   margin: 70px;
@@ -165,24 +172,29 @@ a{
   align-items: center;
   justify-content: center;
   color: var(--color2);
-  font-size: 15px;
+  font-size: 20px;
 }
 
 
-#add{
-  font-size: 20px;
+#add{/*+sign to add task*/
+  font-size: 25px;
   padding-bottom: 4px;
   background-color: var(--color1);
   
 }
 
-.content{
+.content{  /*main data table*/
   display: flex;
   justify-content:center;
+<<<<<<< HEAD
+=======
+  align-items: center;
+>>>>>>> 15710bb (dragging elements added)
   
 
 }
 
+<<<<<<< HEAD
 .title2{
   display: flex;
   
@@ -191,13 +203,23 @@ a{
   align-items: center; 
   min-height: 400px;
   
+=======
+.title2{  /*row name*/    
+  min-height: 150px;
+  width: 1400px; 
+>>>>>>> 15710bb (dragging elements added)
   background-color: var(--color3);
   border-radius: 20px;
+  display: flex;   
+  
+  justify-content: space-around;
+  align-items: center;
   
 }
 
 
 
+<<<<<<< HEAD
 
 
 .title2 td{
@@ -214,11 +236,28 @@ a{
   color: black;
   font-size: 15px;
   padding-top: 20px;
+=======
+.title2 td{  /* data in columns*/
+  height: 100px;
+  width: 150px;
+  margin: 50px;
+  background-color: var(--color3);
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+ 
+  
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  
+>>>>>>> 15710bb (dragging elements added)
  
 
 }
 
 
+<<<<<<< HEAD
 #bluepostit{
   display: flex;
   
@@ -250,3 +289,54 @@ a{
   
 }
 
+=======
+li{  /*list of postits*/ 
+  
+  background-color: var(--color3);
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
+
+#bluepostit{
+  height: 100px;
+  width: 105px;  
+  background-image: url("./blue.png");
+  background-color: var(--color3);
+  background-position: center;  
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  flex-wrap: wrap;
+  
+  padding-left: 8px;
+  padding-right: 5px;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif ;
+  
+  
+  
+}
+
+#bluepostitbg{  /*background of blue postit*/
+  background-color: var(--color3);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  width: 250px;
+  height: 100%;  
+  flex-wrap: wrap;
+  
+  
+}
+
+
+#postit{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+>>>>>>> 15710bb (dragging elements added)

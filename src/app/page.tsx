@@ -2,15 +2,28 @@
 
 import Image from "next/image";
 import blue from './blue.png';
+<<<<<<< HEAD
 import post from './post.png';
 import post2 from './post2.jpg';
 import { SetStateAction,useState } from "react";
 import { DialogProvider, DialogContext } from './context/Context';
 import { useContext} from 'react';
 import { url } from "inspector";
+=======
+	import { url } from "inspector";
+import { SetStateAction,useState } from "react";
+import { DialogProvider, DialogContext } from './context/Context';
+import { useContext} from 'react';
+import { DndContext , DragEndEvent} from "@dnd-kit/core";
+import CartDroppable from "./components/droppable";
+import FruitDragable from "./components/draggable";
+>>>>>>> 15710bb (dragging elements added)
 
 
-export default function Home() {
+
+
+export default function Home()
+ {
   return (
     <><></><Navbar />
     <DialogProvider>
@@ -25,8 +38,9 @@ export default function Home() {
       </tr>
       </tbody>
     </table>
-
+   
     <Todorow/>
+<<<<<<< HEAD
     </DialogProvider>
 
   
@@ -45,23 +59,46 @@ function Todorow() {
    string1=len.toString();
    string1=string1+"px";
 
+=======
+   
+    </DialogProvider><></></>
+  );
+}
+function Todorow() {
+  const {prepTasks, setPrepTask} = useContext(DialogContext);
+   const {taskList} = useContext(DialogContext);
+   const {addPrepItem} = useContext(DialogContext);
+>>>>>>> 15710bb (dragging elements added)
   
-  
+   
+   const len=(taskList.tasks.length)*81;
+   let string1;
+   string1=len.toString();
+   string1=string1+"px";
+
+   
+
  
   return(
+    <DndContext onDragEnd={addPrepItem}>
     <table className="content">
 <tbody>
        <tr className="title2" style={{height:string1}}>
         <td id="postit"><Notes/> </td>
+<<<<<<< HEAD
         <td>data </td>
         <td>data </td>
+=======
+        <td><CartDroppable items={prepTasks}/> </td>
+        <td>change</td>
+>>>>>>> 15710bb (dragging elements added)
         <td>data </td>
         <td>data </td>
     
         </tr> 
         </tbody>
     </table>
-   
+    </DndContext>
   ) ;
  
 }
@@ -127,6 +164,7 @@ function Addtask(){
 function Notes(){
   const { taskList} = useContext(DialogContext);
   return(
+<<<<<<< HEAD
    <ul id="bluepostitbg">
     {taskList.tasks.map( (task, i ) => 
   
@@ -135,11 +173,17 @@ function Notes(){
   
  
   }}>{task}</div></li>
+=======
+<div id="postitmain">
+   <ul id="bluepostitbg">
+    {taskList.tasks.map( (task ) => 
+  
+    <li><FruitDragable items={task}></FruitDragable></li>
+>>>>>>> 15710bb (dragging elements added)
     )}
-   </ul>
+   </ul></div>
   )
 }
-
 
 
 

@@ -1,5 +1,6 @@
 import { createContext, SetStateAction} from 'react';
 import { useState } from 'react';
+import { DndContext , DragEndEvent} from "@dnd-kit/core";
 
 interface DialogContextType {
     openDialog: boolean;
@@ -10,17 +11,25 @@ interface DialogContextType {
     updateResponse: (event: React.ChangeEvent<HTMLInputElement>) => void;
     taskList: { tasks: string[] };
     editTask: (taskList: { tasks: string[] }) => void;
+    prepTasks: string;
+    setPrepTask: (prepTask: string) => void;
+    addPrepItem: (event: DragEndEvent) => void;
 
   }
   const defaultDialogContext: DialogContextType = {
     openDialog: false,
-    handleClick: () => {},
-    handleCloseDialog: () => {},
-    setResponse: (response: string) => {},
+    handleClick: () => { },
+    handleCloseDialog: () => { },
+    setResponse: (response: string) => { },
     response: '',
-    updateResponse: (event: React.ChangeEvent<HTMLInputElement>) => {},
+    updateResponse: (event: React.ChangeEvent<HTMLInputElement>) => { },
     taskList: { tasks: [] },
-    editTask: (taskList: { tasks: string[] }) => {}
+    editTask: (taskList: { tasks: string[]; }) => { },
+    prepTasks: '',
+    setPrepTask: (prepTasks: string) => { },
+    addPrepItem: function (event: DragEndEvent): void {
+      throw new Error('Function not implemented.');
+    }
   };
 
   const DialogContext = createContext<DialogContextType>(defaultDialogContext);
@@ -51,10 +60,23 @@ const DialogProvider = ({ children }: { children: React.ReactNode }) => {
         tasks: [],
     
       });
- 
+      const [prepTasks, setPrepTask] = useState("");
+      const addPrepItem = (e: DragEndEvent) => {
+        const newItem = e.active.data.current?.title;
+        if (e.over?.id != "cart-droppable" || !newItem) return;
+        setPrepTask(newItem);
+        const index = taskList.tasks.findIndex((tab) => tab === newItem);
+        let nlist = [...taskList.tasks];
+        
+        nlist= [...nlist.slice(0, index), ...nlist.slice(index + 1)];
+     editTask({
+      tasks: nlist,
+     }); 
+      }
+      
 
   return (
-    <DialogContext.Provider value={{ openDialog, handleClick, handleCloseDialog,setResponse, response, updateResponse, taskList, editTask}}>
+    <DialogContext.Provider value={{ openDialog, handleClick, handleCloseDialog,setResponse, response, updateResponse, taskList,addPrepItem, editTask,prepTasks,setPrepTask}}>
       {children}
     </DialogContext.Provider>
   );
