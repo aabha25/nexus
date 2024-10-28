@@ -7,13 +7,10 @@
   --color1: #502907;
   --color2: #F9D2AF;
   --color3: rgba(65, 138, 195, 1);
-<<<<<<< HEAD
-=======
 }
 *{
   background-color: var(--color3);
   
->>>>>>> 15710bb (dragging elements added)
 }
 .dialog-box {
   position: absolute;
@@ -186,28 +183,14 @@ a{
 .content{  /*main data table*/
   display: flex;
   justify-content:center;
-<<<<<<< HEAD
-=======
   align-items: center;
->>>>>>> 15710bb (dragging elements added)
   
 
 }
 
-<<<<<<< HEAD
-.title2{
-  display: flex;
-  
-  
-   
-  align-items: center; 
-  min-height: 400px;
-  
-=======
 .title2{  /*row name*/    
   min-height: 150px;
   width: 1400px; 
->>>>>>> 15710bb (dragging elements added)
   background-color: var(--color3);
   border-radius: 20px;
   display: flex;   
@@ -219,24 +202,6 @@ a{
 
 
 
-<<<<<<< HEAD
-
-
-.title2 td{
-
-
-  
-  height: 100px;
-  width: 150px;
-  background-color: var(--color3);
-  margin: 70px;  
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: black;
-  font-size: 15px;
-  padding-top: 20px;
-=======
 .title2 td{  /* data in columns*/
   height: 100px;
   width: 150px;
@@ -251,45 +216,11 @@ a{
   align-items: center;
   justify-content: center;  
   
->>>>>>> 15710bb (dragging elements added)
  
 
 }
 
 
-<<<<<<< HEAD
-#bluepostit{
-  display: flex;
-  
-  
-  height: 150px;
-  width: 150px;  
-  justify-content: center;
-  align-items: center;
-  align-content: flex-start;
-  background-image: url("./blue.png");
-  background-color: var(--color3);
-  background-position: center;  
-  
-  
-
-}
-
-#bluepostitbg{
-  background-color: var(--color3);
-}
-
-
-.img {
- 
-  margin: 20px;
-  border: 1px solid black;
-  margin-bottom: 100px;
- 
-  
-}
-
-=======
 li{  /*list of postits*/ 
   
   background-color: var(--color3);
@@ -339,4 +270,3 @@ li{  /*list of postits*/
   justify-content: center;
   align-items: center;  
 }
->>>>>>> 15710bb (dragging elements added)

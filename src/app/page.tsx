@@ -2,22 +2,17 @@
 
 import Image from "next/image";
 import blue from './blue.png';
-<<<<<<< HEAD
-import post from './post.png';
-import post2 from './post2.jpg';
-import { SetStateAction,useState } from "react";
-import { DialogProvider, DialogContext } from './context/Context';
-import { useContext} from 'react';
-import { url } from "inspector";
-=======
 	import { url } from "inspector";
 import { SetStateAction,useState } from "react";
 import { DialogProvider, DialogContext } from './context/Context';
+import { DialogProvider2, DialogContext } from './context/Context2';
 import { useContext} from 'react';
 import { DndContext , DragEndEvent} from "@dnd-kit/core";
 import CartDroppable from "./components/droppable";
 import FruitDragable from "./components/draggable";
->>>>>>> 15710bb (dragging elements added)
+import { after } from "node:test";
+import CartDroppable2 from "./components/droppable2";
+
 
 
 
@@ -39,39 +34,29 @@ export default function Home()
       </tbody>
     </table>
    
-    <Todorow/>
-<<<<<<< HEAD
-    </DialogProvider>
+    <Todorow/></DialogProvider>
+    <DialogProvider2> <Todorow/></DialogProvider2>
+    
+    
 
-  
     
    
-    
     <></></>
-
-    
-  );
-}
-function Todorow() {
-   const {taskList} = useContext(DialogContext);
-   const len=(taskList.tasks.length)*200;
-   let string1;
-   string1=len.toString();
-   string1=string1+"px";
-
-=======
-   
-    </DialogProvider><></></>
   );
 }
 function Todorow() {
   const {prepTasks, setPrepTask} = useContext(DialogContext);
-   const {taskList} = useContext(DialogContext);
-   const {addPrepItem} = useContext(DialogContext);
->>>>>>> 15710bb (dragging elements added)
-  
+   const {taskList,progTasks} = useContext(DialogContext);
    
-   const len=(taskList.tasks.length)*81;
+   const {addPrepItem,addDoneItem} = useContext(DialogContext);
+   const {preppedTask,doneTask} = useContext(DialogContext);
+   const{afterDrag} = useContext(DialogContext);
+   
+   
+  
+   const lengt = Math.max(taskList.tasks.length,preppedTask.length);
+   const leng = Math.max(doneTask.length,lengt);
+  const len=leng*81;
    let string1;
    string1=len.toString();
    string1=string1+"px";
@@ -80,25 +65,20 @@ function Todorow() {
 
  
   return(
-    <DndContext onDragEnd={addPrepItem}>
+    
     <table className="content">
 <tbody>
        <tr className="title2" style={{height:string1}}>
-        <td id="postit"><Notes/> </td>
-<<<<<<< HEAD
-        <td>data </td>
-        <td>data </td>
-=======
-        <td><CartDroppable items={prepTasks}/> </td>
-        <td>change</td>
->>>>>>> 15710bb (dragging elements added)
-        <td>data </td>
-        <td>data </td>
+       <DndContext onDragEnd={addPrepItem}> <td id="postit"><Notes/> </td>
+        <td><CartDroppable items={prepTasks}/> </td></DndContext>
+        <DndContext onDragEnd={addDoneItem}><td><PrepNotes/></td>
+        <td><CartDroppable2 items={progTasks}/> </td></DndContext>
+        <td><DoneNotes/></td>
     
         </tr> 
         </tbody>
     </table>
-    </DndContext>
+   
   ) ;
  
 }
@@ -119,7 +99,7 @@ function Navbar() {
 }
 
 function Addtask(){
-  const { openDialog, handleClick, handleCloseDialog, response, updateResponse} = useContext(DialogContext);
+  const { openDialog, handleClick,handleClick2, handleCloseDialog, response, updateResponse} = useContext(DialogContext);
   /*const [response, setResponse] = useState("");
   const updateResponse = (event: { target: { value: SetStateAction<string>; }; }) => {
     setResponse(event.target.value);
@@ -136,24 +116,32 @@ function Addtask(){
     setOpen(false);
   };*/
  
-
+  const handleKeyPress = (event: { key: string; }) => {
+    if (event.key === 'Enter') {
+      //alert('event triggered');
+    handleCloseDialog();
+    }};
   return(
     
     <div>
       <button id="add" onClick={handleClick}>+</button>
       {openDialog && (
-        <div className="dialog-box">
-         <h2 className="elem" id="addtodo">Current Task</h2>
+        <div className="dialog-box">  
+         
+          <h2 className="elem" id="addtodo">Current Task </h2>
+          
+         
+      
    <h3 className="elem" id="type">Click the note to start typing</h3>
-   
+  
    <div className="stickynote">
    
-        <input className="eleme" onChange={updateResponse} value={response} />
-      
+         <input className="eleme" onChange={updateResponse} value={response} placeholder="Type Here"onKeyDown={handleKeyPress} />
    
     </div>
           
           <button id="close" onClick={handleCloseDialog}>Click to Add Task</button>
+          <button style={{float:`right`,}} id="close" onClick={handleClick2}>Close</button>
         </div>
       )}
     </div>
@@ -164,22 +152,39 @@ function Addtask(){
 function Notes(){
   const { taskList} = useContext(DialogContext);
   return(
-<<<<<<< HEAD
-   <ul id="bluepostitbg">
-    {taskList.tasks.map( (task, i ) => 
-  
-  <li key={i} ><div  id="bluepostit" style={{backgroundImage: `url(${blue})`,
-  backgroundSize: 'cover',
-  
- 
-  }}>{task}</div></li>
-=======
 <div id="postitmain">
    <ul id="bluepostitbg">
-    {taskList.tasks.map( (task ) => 
+    {taskList.tasks.map( (task ,j) => 
   
-    <li><FruitDragable items={task}></FruitDragable></li>
->>>>>>> 15710bb (dragging elements added)
+    <li key={j}><FruitDragable items={task}></FruitDragable></li>
+    )}
+   </ul></div>
+  )
+}
+
+function PrepNotes(){
+  const { preppedTask} = useContext(DialogContext);
+  
+  return(
+<div id="postitmain">
+   <ul id="bluepostitbg">
+    {preppedTask.map( (task ,i) => 
+  
+    <li key={i}><FruitDragable items={task}></FruitDragable></li>
+    )}
+   </ul></div>
+  )
+}
+
+function DoneNotes(){
+  const { doneTask} = useContext(DialogContext);
+  
+  return(
+<div id="postitmain">
+   <ul id="bluepostitbg">
+    {doneTask.map( (task ,i) => 
+  
+    <li key={i}><FruitDragable items={task}></FruitDragable></li>
     )}
    </ul></div>
   )

@@ -4,29 +4,24 @@ import { DialogProvider, DialogContext } from 'D:/College/Kanban/workingproject/
 
 import { useContext} from 'react';
 import { useState } from "react";
-import { after } from "node:test";
-import { SERVER_PROPS_EXPORT_ERROR } from "next/dist/lib/constants";
 
-interface ICartDroppable {
+
+
+interface ICartDroppable2 {
     items: string ;
 }
 
-const CartDroppable: FC<ICartDroppable> = (props) => {
+const CartDroppable2: FC<ICartDroppable2> = (props) => {
     const {setNodeRef} = useDroppable({
-        id: "cart-droppable"
+        id: "cart-droppable2"
     });
 
    
-    const {checkBox} = useContext(DialogContext); 
-    const { preppedTask,editpTask,prepTasks,setPrepTask} = useContext(DialogContext);//a thing that lives in context, updated when checkingList length is 0
-   //no need to import as context, can live here as
+    const {progTasks,setProgTasks} = useContext(DialogContext);
+    const{checkBox2,afterDrag2,doneTask,editdTask}=useContext(DialogContext);
     const [checkingList, setCheckingList] = useState({
         tasks: [],
     });
-    const {afterDrag} = useContext(DialogContext);
-    
-    
-     //taking input for checkboxes
     const[taskList, editTask] = useState({
         tasks: [],
     
@@ -52,47 +47,44 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
      
       
         }};
-        //convert to checkbox
         const convert = ()=>{
-            afterDrag();
+            afterDrag2();
             
         };
-       
+  //append
+  const append = (taskname: string) =>{
+    const nlist = [...checkingList.tasks,taskname]; // Add the name to the list
+        setCheckingList({
+            tasks:nlist,
+        });
+   }
 
-        //append
-        const append = (taskname: string) =>{
-            const nlist = [...checkingList.tasks,taskname]; // Add the name to the list
-                setCheckingList({
-                    tasks:nlist,
-                });
-           }
+//remove
+const remove = (taskname:string) =>{
 
-        //remove
-        const remove = (taskname:string) =>{
+    const index = checkingList.tasks.findIndex((tab) => tab === taskname);
+    const nlist = [...checkingList.tasks.slice(0, index), ...checkingList.tasks.slice(index + 1)];
+    setCheckingList({
+        tasks:nlist,
+    });
+   };
+
+   useEffect(() => {
   
-            const index = checkingList.tasks.findIndex((tab) => tab === taskname);
-            const nlist = [...checkingList.tasks.slice(0, index), ...checkingList.tasks.slice(index + 1)];
-            setCheckingList({
-                tasks:nlist,
-            });
-           }
-        //what I used instead of useEffect - skip
-        
-        //the useEffect
-        useEffect(() => {
-  
-           if((!prepList)&&(checkingList.tasks.length===0)){
-            const newlist=[...preppedTask,props.items]
-            editpTask(newlist);
-            editTask({
-                tasks:[],
-            })
-            setPrepTask("");
-            setPrepList(!prepList);
-           }
-          }, [checkingList.tasks]
-          
-          );
+    
+    if((!prepList)&&(checkingList.tasks.length===0)){
+        const newlist=[...doneTask,props.items]
+        editdTask(newlist);
+        editTask({
+            tasks:[],
+        })
+        setProgTasks("");
+        setPrepList(!prepList);
+       }
+   }, [checkingList.tasks]
+   
+   );
+
     return(
         <>
         <div ref={setNodeRef}
@@ -102,11 +94,11 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
              border: "1px solid black",
           }}
         >
-         <p style={{fontWeight: 'bold', textAlign: 'center'}}>{prepTasks}
+         <p style={{fontWeight: 'bold', textAlign: 'center'}}>{progTasks}
         </p> 
-        {checkBox && (
+        {checkBox2 && (
         <div >  
-         What do you need to prepare?
+         What do you need to do?
          <input onChange={updateResponse} value={response} onKeyDown={handleKeyPress}placeholder="Type Here"/>
      
          
@@ -116,24 +108,26 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
                                 )}</div><button onClick={convert}>Convert to checkbox</button></>
         
       )}
+     
+         
+ 
         </div>
       )}
-       {(!checkBox&&!prepList) && (
+       {(!checkBox2&&!prepList) && (
     
     <><div>
     {taskList.tasks.map((task,i) => <li key={i}><Aabha name={task} append={append} remove={remove}/></li>
     )}</div></>                      
         
       )}
-       
-        </div>
-       
+       </div>
         </>
     );
 };
 
-export default CartDroppable;
-interface GreetingProps {
+export default CartDroppable2;
+
+interface GreetingProps2 {
     name: string; // The name prop
     append: (taskname: string) => void;
     remove: (taskname: string) => void;
@@ -142,13 +136,12 @@ interface GreetingProps {
     
 }
 
-// Create the functional component
-const Aabha: React.FC<GreetingProps> = ({ name,append,remove}) => {
+const Aabha: React.FC<GreetingProps2> = ({ name,append,remove}) => {
     const emptySquare = '\u25A1';
     const filledSquare = '\u25A0';
     const [isChecked,checkMark]=useState(false);
     const { preplist,setpTask} = useContext(DialogContext);
-    const {checkBox} = useContext(DialogContext); 
+    const {checkBox2} = useContext(DialogContext); 
   
     const handlePress = () => {
         // Determine the new checked state

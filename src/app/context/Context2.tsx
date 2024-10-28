@@ -65,7 +65,7 @@ interface DialogContextType {
 
   const DialogContext = createContext<DialogContextType>(defaultDialogContext);
 
-const DialogProvider = ({ children }: { children: React.ReactNode }) => {
+const DialogProvider2 = ({ children }: { children: React.ReactNode }) => {
   const [openDialog, setOpen] = useState(false);
   const [checkBox,setBox] = useState (false);
   const [checkBox2,setBox2] = useState (false);
@@ -148,4 +148,4 @@ const DialogProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export { DialogProvider, DialogContext };
+export { DialogProvider2, DialogContext };
