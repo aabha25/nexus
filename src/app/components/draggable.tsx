@@ -20,12 +20,13 @@ const FruitDragable: FC<IToDraggable> = (props) => {
         ref={setNodeRef}
         style={{transform: CSS.Translate.toString(transform),
             backgroundColor:`var(--color3)`,
+            zIndex:30,
         }}
         {...attributes}
     {...listeners}        >
         <div  id="bluepostit" style={{height: '100px',
   width: '105px',
- 
+
   backgroundColor: `var(--color3)`,
   backgroundPosition: 'center',
   margin: '10px',

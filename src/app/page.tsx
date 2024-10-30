@@ -3,9 +3,9 @@
 import Image from "next/image";
 import blue from './blue.png';
 	import { url } from "inspector";
-import { SetStateAction,useState } from "react";
+import { SetStateAction,useState,useEffect } from "react";
 import { DialogProvider, DialogContext } from './context/Context';
-import { DialogProvider2, DialogContext } from './context/Context2';
+
 import { useContext} from 'react';
 import { DndContext , DragEndEvent} from "@dnd-kit/core";
 import CartDroppable from "./components/droppable";
@@ -22,6 +22,7 @@ export default function Home()
   return (
     <><></><Navbar />
     <DialogProvider>
+    <TotalPro />
     <table className="heading">
       <tbody>
       <tr className="title1">
@@ -35,7 +36,7 @@ export default function Home()
     </table>
    
     <Todorow/></DialogProvider>
-    <DialogProvider2> <Todorow/></DialogProvider2>
+    
     
     
 
@@ -187,6 +188,66 @@ function DoneNotes(){
     <li key={i}><FruitDragable items={task}></FruitDragable></li>
     )}
    </ul></div>
+  )
+}
+
+function TotalPro(){
+  const { doneTask,taskList,preppedTask,progTasks,prepTasks} = useContext(DialogContext);
+  let prog =0;
+  if(progTasks!="") prog=1;
+  let prep =0;
+  if(prepTasks!="") prep=1;
+  let total = (doneTask.length)+(taskList.tasks.length)+(preppedTask.length)+prog+prep;
+  total = total*10;
+  let progress = ((doneTask.length)*10)+((preppedTask.length+prog)*3);
+  if(total!=0)progress= (progress/total)*100;
+  let string1;
+  string1=progress.toString();
+   string1=string1+"%";
+
+  useEffect(()=>{
+    console.log(doneTask.length);
+    console.log(preppedTask.length);
+    console.log(taskList.tasks.length);
+    console.log(prog);
+    console.log(prep);
+  
+    if(total===0) string1="0%";
+
+  });
+
+  
+   
+
+  
+  
+  return(
+    <><div
+        style={{
+          width: '30%', // Increase the width of the droppable area
+          height: '30px', // Increase the height of the droppable area
+        
+          position: 'relative',
+          top:"30px",
+          left:"35%",
+        }}
+      >
+        <p style={{
+          fontWeight: 'bold', textAlign: 'center',
+          zIndex: 4, position: 'absolute', top: '0px', left: '0px', height: "100%", width: '100%',
+          backgroundColor: 'rgba(255, 0, 0, 0)',
+        }}>Nexus
+        </p>
+        <p style={{
+          backgroundColor: 'lightblue', color: 'rgba(255, 0, 0, 0)', height: "100%", zIndex: 2, position: 'absolute',
+          top: '0px', width: '100%',
+        }}> hi
+        </p>
+        <p style={{
+          backgroundColor: 'rgba(3, 90, 252, 0.8)', color: 'rgba(255, 0, 0, 0)', height: "100%", zIndex: 3, position: 'absolute',
+          top: '0px', width: string1,
+        }}> hi
+        </p> </div></>
   )
 }
 

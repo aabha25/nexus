@@ -34,6 +34,12 @@ const CartDroppable2: FC<ICartDroppable2> = (props) => {
     };
     const handleKeyPress = (event: { key: string; }) => {
         if (event.key === 'Enter') {
+
+            let mtasks = [...checkingList.tasks, response];
+            setCheckingList({
+             tasks:mtasks,
+            });
+
             let ntasks = [...taskList.tasks, response];
             editTask({
                 tasks: ntasks,
@@ -41,9 +47,7 @@ const CartDroppable2: FC<ICartDroppable2> = (props) => {
                
        setResponse("");
        setPrepList(false);
-       setCheckingList({
-        tasks:ntasks,
-       });
+      
      
       
         }};
@@ -63,11 +67,30 @@ const CartDroppable2: FC<ICartDroppable2> = (props) => {
 const remove = (taskname:string) =>{
 
     const index = checkingList.tasks.findIndex((tab) => tab === taskname);
+    console.log("checkingList index"+index);
+    if(index!=-1){
     const nlist = [...checkingList.tasks.slice(0, index), ...checkingList.tasks.slice(index + 1)];
     setCheckingList({
         tasks:nlist,
     });
+   }
    };
+
+   const lremove = (taskname:string) =>{
+           
+
+    const index = taskList.tasks.findIndex((tab) => tab === taskname);
+    console.log("tasklist Index"+index);
+ 
+   const nlist = [...taskList.tasks.slice(0, index), ...taskList.tasks.slice(index + 1)];
+    editTask({
+        tasks:nlist,
+    });
+
+    remove(taskname);
+   
+
+  };
 
    useEffect(() => {
   
@@ -80,11 +103,19 @@ const remove = (taskname:string) =>{
         })
         setProgTasks("");
         setPrepList(!prepList);
+        afterDrag2();
        }
    }, [checkingList.tasks]
    
    );
-
+   let a=taskList.tasks.length;
+   let b=checkingList.tasks.length;
+   let c=a-b;
+   c=(c/a)*100;
+   let string1;
+   string1=c.toString();
+    string1=string1+"%";
+  
     return(
         <>
         <div ref={setNodeRef}
@@ -92,37 +123,41 @@ const remove = (taskname:string) =>{
             width: '300px', // Increase the width of the droppable area
             height: '200px', // Increase the height of the droppable area
              border: "1px solid black",
+             position:'relative',
           }}
         >
-         <p style={{fontWeight: 'bold', textAlign: 'center'}}>{progTasks}
+         <p style={{fontWeight: 'bold', textAlign: 'center', 
+            zIndex:4,position:'absolute', top:'0px', left:'0px',  width: '100%',
+            backgroundColor: 'rgba(255, 0, 0, 0)',}}>{progTasks}
+        </p> 
+<p style={{backgroundColor: checkBox2 ? 'lightblue' : 'rgba(255, 0, 0, 0)', color: checkBox2 ? 'lightblue' : 'rgba(255, 0, 0, 0)',zIndex:2,position:'absolute',
+             top:'0px', width: '100%',
+             }}> hi
+        </p> 
+        <p style={{backgroundColor: checkBox2 ? 'rgba(3, 90, 252, 0.8)': 'rgba(255, 0, 0, 0)', color: checkBox2 ? 'rgba(3, 90, 252, 0)' : 'rgba(255, 0, 0, 0)',zIndex:3,position:'absolute',
+             top:'0px', width:prepList? '0%':string1,
+             }}> hi
         </p> 
         {checkBox2 && (
-        <div >  
-         What do you need to do?
-         <input onChange={updateResponse} value={response} onKeyDown={handleKeyPress}placeholder="Type Here"/>
-     
-         
-  {!prepList && (
+        <><div>
+                        W
+                           <div style={{border: "1px solid black",}}> <input style={{width:'100%',}} onChange={updateResponse} value={response} onKeyDown={handleKeyPress} placeholder="Type Here" /></div>
+
+
+{!prepList && (
     <><div>
-                                {taskList.tasks.map((task,k) => <li key={k}>•{task}</li>
-                                )}</div><button onClick={convert}>Convert to checkbox</button></>
-        
-      )}
-     
-         
- 
-        </div>
-      )}
-       {(!checkBox2&&!prepList) && (
-    
-    <><div>
-    {taskList.tasks.map((task,i) => <li key={i}><Aabha name={task} append={append} remove={remove}/></li>
-    )}</div></>                      
-        
-      )}
-       </div>
-        </>
-    );
+    {taskList.tasks.map((task, i) => <li key={i}><Aabha name={task} append={append} remove={remove} lremove={lremove}  check={checkingList.tasks} tasks={taskList.tasks} trial= {task}/></li>
+    )}</div></>
+
+)}
+</div></>
+)}
+
+
+</div>
+
+</>
+);
 };
 
 export default CartDroppable2;
@@ -131,20 +166,66 @@ interface GreetingProps2 {
     name: string; // The name prop
     append: (taskname: string) => void;
     remove: (taskname: string) => void;
+    lremove: (taskname: string) => void;
+       check: string[];
+    tasks: string[];
+    trial: string;
    
   
     
 }
 
-const Aabha: React.FC<GreetingProps2> = ({ name,append,remove}) => {
+const Aabha: React.FC<GreetingProps2> = ({ name,append,remove,lremove, check,tasks,trial}) => {
     const emptySquare = '\u25A1';
     const filledSquare = '\u25A0';
     const [isChecked,checkMark]=useState(false);
     const { preplist,setpTask} = useContext(DialogContext);
     const {checkBox2} = useContext(DialogContext); 
-  
+  const [tapState, setTapState]=useState(false);
+      useEffect(()=>{
+       
+        if(!tapState) checkMark(false);  
+      
+        const something = [...check];
+        const index2 = something.findIndex((tab) => tab === name);
+        if((index2===-1)) checkMark(true);
+        else checkMark(false);
+      },[check]);
+
+       
+   
+       
+       
+      
+    
+      
+      useEffect(()=>{
+        
+    
+        if (!(trial in check)) checkMark(true);
+        const something = [...check];
+        const index2 = something.findIndex((tab) => tab === name);
+        if((index2===-1)) checkMark(true);
+        else checkMark(false);
+      },[trial]);
+
+      useEffect(()=>{
+       
+        if(!tapState) checkMark(false);
+        const something = [...check];
+        const index2 = something.findIndex((tab) => tab === name);
+        if((index2===-1)) checkMark(true);
+        else checkMark(false);
+        
+
+      },[tasks]);
+
     const handlePress = () => {
+        //if(name in check){ remove(name);
+        //checkMark(true);}
+    //else {append(name); checkMark(false);}
         // Determine the new checked state
+        setTapState(true);
         const newCheckedState = !isChecked;
         checkMark(newCheckedState);
     
@@ -153,9 +234,19 @@ const Aabha: React.FC<GreetingProps2> = ({ name,append,remove}) => {
         } else {
           remove(name)
         }
+       
         
     };
-    
+
+ 
+
+    const handlelPress = () => {
+       setTapState(false);
+        
+        lremove(name);
+       
+    }
+  
     return (
       <><div style={{display: 'flex',
         justifyContent: 'center',
@@ -175,7 +266,15 @@ const Aabha: React.FC<GreetingProps2> = ({ name,append,remove}) => {
     <div> {emptySquare}</div>             
    
  )}
-            </button><div style={{textDecoration: !isChecked ? 'none' : 'line-through',}}>{name}</div></div></>
+            </button><div style={{textDecoration: !isChecked ? 'none' : 'line-through',}}>{name}</div>
+            <div style={{ display: 'flex',
+        justifyContent: 'right',
+       
+        width: '25px',
+        }}><button onClick={handlelPress}>x</button></div>
+            </div>
+            
+            </>
        
     );
 };

@@ -63,7 +63,7 @@ interface DialogContextType {
     }
   };
 
-  const DialogContext = createContext<DialogContextType>(defaultDialogContext);
+  const DialogContext2 = createContext<DialogContextType>(defaultDialogContext);
 
 const DialogProvider2 = ({ children }: { children: React.ReactNode }) => {
   const [openDialog, setOpen] = useState(false);
@@ -148,4 +148,4 @@ const DialogProvider2 = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export { DialogProvider2, DialogContext };
+export { DialogProvider2, DialogContext2 };
