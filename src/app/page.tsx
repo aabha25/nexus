@@ -90,7 +90,7 @@ function Navbar() {
     <><></><div className="navbar">
       <a href="#"><button className="nav">Home</button></a>
       <a href="#"><button className="nav">Contact Us</button></a>
-      <a href="#"><button className="nav">Reviews</button></a>
+      
       <a href="#"><button className="nav">Tutorial</button></a>
       <a href="#"><button className="nav" id="logout">Logout</button></a>
     </div><></></>
@@ -222,30 +222,35 @@ function TotalPro(){
   
   
   return(
-    <><div
+    <>
+    {/* project progress bar */}
+    <div
         style={{
           width: '30%', // Increase the width of the droppable area
-          height: '30px', // Increase the height of the droppable area
+          height: '40px', // Increase the height of the droppable area
+          
         
           position: 'relative',
           top:"30px",
           left:"35%",
+          marginBottom:'20px',  
+          marginTop:'20px',        
         }}
       >
         <p style={{
           fontWeight: 'bold', textAlign: 'center',
-          zIndex: 4, position: 'absolute', top: '0px', left: '0px', height: "100%", width: '100%',
+          zIndex: 4, position: 'absolute', top: '6px', left: '0px', height: "100%", width: '100%',
           backgroundColor: 'rgba(255, 0, 0, 0)',
         }}>Nexus
         </p>
         <p style={{
-          backgroundColor: 'lightblue', color: 'rgba(255, 0, 0, 0)', height: "100%", zIndex: 2, position: 'absolute',
-          top: '0px', width: '100%',
+          backgroundColor: '#5ec5ee', color: 'rgba(255, 0, 0, 0)', height: "100%", zIndex: 2, position: 'absolute',
+          top: '0px', width: '100%', borderRadius:'5px',
         }}> hi
         </p>
         <p style={{
           backgroundColor: 'rgba(3, 90, 252, 0.8)', color: 'rgba(255, 0, 0, 0)', height: "100%", zIndex: 3, position: 'absolute',
-          top: '0px', width: string1,
+          top: '0px', width: string1, borderRadius:'5px',
         }}> hi
         </p> </div></>
   )

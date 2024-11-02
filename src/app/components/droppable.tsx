@@ -1,9 +1,10 @@
 import {useDroppable} from "@dnd-kit/core";
 import {FC, SetStateAction, useEffect} from 'react';
-import { DialogProvider, DialogContext } from 'D:/College/Kanban/workingproject/nexus/src/app/context/Context';
+import { DialogProvider, DialogContext } from 'C:/Users/Rashmi Abhyankar/Desktop/web/kanban2/kb/src/app/context/Context';
 
 import { useContext} from 'react';
 import { useState } from "react";
+
 
 
 interface ICartDroppable {
@@ -138,39 +139,40 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
 
     return(
         <>
-        <div ref={setNodeRef}
+        <div id="spiral" ref={setNodeRef}
         style={{
-            width: '300px', // Increase the width of the droppable area
-            height: '200px', // Increase the height of the droppable area
-             border: "1px solid black",
-             position:'relative',
+            width: '190px', // Increase the width of the droppable area
+            height: '300px', // Increase the height of the droppable area
+             position: 'fixed',
+             marginRight:'22px',
+             backgroundColor:"rgba(65, 138, 195, 1)",
+             
           }}
         >
-         <p style={{fontWeight: 'bold', textAlign: 'center', 
-            zIndex:4,position:'absolute', top:'0px', left:'0px',  width: '100%',
+            {/* progress bar of preparing */}
+         <p  style={{fontWeight: 'bold', textAlign: 'center', 
+            zIndex:4,position:'absolute', top:'45px', left:'0px',  width: '100%',
             backgroundColor: 'rgba(255, 0, 0, 0)',}}>{prepTasks}
         </p> 
-        <p style={{backgroundColor: checkBox ? 'lightblue' : 'rgba(255, 0, 0, 0)', color: checkBox ? 'lightblue' : 'rgba(255, 0, 0, 0)',zIndex:2,position:'absolute',
-             top:'0px', width: '100%',
+        <p style={{backgroundColor: checkBox ? '#5ec5ee' : 'rgba(255, 0, 0, 0)', color: checkBox ? '#5ec5ee' : 'rgba(255, 0, 0, 0)',zIndex:2,position:'absolute',
+             top:'45px', width: '95%', borderRadius:'5px', marginLeft:'5px',
              }}> hi
         </p> 
         <p style={{backgroundColor: checkBox ? 'rgba(3, 90, 252, 0.8)': 'rgba(255, 0, 0, 0)', color: checkBox ? 'rgba(3, 90, 252, 0)' : 'rgba(255, 0, 0, 0)',zIndex:3,position:'absolute',
-             top:'0px', width:prepList? '0%':string1,
+             top:'45px', width: '95%', borderRadius:'5px', marginLeft:'5px', width:prepList? '0%':string1,
              }}> hi
         </p> 
         {checkBox && (
-        <><div>
-                    w
-                       <div style={{border: "1px solid black",}}> <input style={{width:'100%',}} onChange={updateResponse} value={response} onKeyDown={handleKeyPress} placeholder="Type Here" /></div>
+        <>
+                    <input style={{width:'95%', marginTop:'75px',marginLeft:'5px', backgroundColor:"rgba(65, 138, 195, 0)", border:'1px solid black', borderRadius:'5px', }} onChange={updateResponse} value={response} onKeyDown={handleKeyPress} placeholder="Type Here" />
 
+                    {!prepList && (
+    <>
+    {taskList.tasks.map((task, i) => <li style={{backgroundColor:"rgba(65, 138, 195, 0)", width:'100px',marginLeft:'4px',}} key={i}><Aabha name={task} append={append} remove={remove} lremove={lremove}  check={checkingList.tasks} tasks={taskList.tasks} trial= {task}/></li>
+    )}</>
 
-                        {!prepList && (
-                            <><div>
-                            {taskList.tasks.map((task) => <li ><Aabha name={task} trial= {task}append={append} remove={remove} lremove={lremove} check={checkingList.tasks} tasks={taskList.tasks}/></li>
-                            )}</div></>
-
-                        )}
-                    </div></>
+)}
+                    </>
       )}
        
        
@@ -203,9 +205,7 @@ const Aabha: React.FC<GreetingProps> = ({ name,append,remove, lremove, check,tas
     const {checkBox} = useContext(DialogContext); 
     const [tapState, setTapState]=useState(false);
 
-    function delay(ms: number) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-      }
+    
    
     useEffect(()=>{
        
@@ -274,27 +274,33 @@ const Aabha: React.FC<GreetingProps> = ({ name,append,remove, lremove, check,tas
   
     return (
       <><div style={{display: 'flex',
-        justifyContent: 'center',
+        
         alignItems: 'center',
-        width: '200px',
+        
+        width: '310px',
+        
+        
+        
+        backgroundColor:"rgba(255,255,255,0)",
         }}><button onClick={handlePress} style={{
             
             fontSize:'35px',
          }}>
             {isChecked && (
     
-         <div> {filledSquare}</div>             
+         <div style={{backgroundColor:"rgba(255,255,255,0)", }}> {filledSquare}</div>             
         
       )}
        {!isChecked && (
     
-    <div> {emptySquare}</div>             
+    <div style={{backgroundColor:"rgba(255,255,255,0)", }}> {emptySquare}</div>             
    
  )}
-            </button><div style={{textDecoration: !isChecked ? 'none' : 'line-through',}}>{name}</div>
+            </button ><div style={{textDecoration: !isChecked ? 'none' : 'line-through', backgroundColor:'rgba(255,255,255,0)',}}>{name}</div>
             <div style={{ display: 'flex',
         justifyContent: 'right',
-       
+        
+        backgroundColor:"rgba(255,255,255,0)",       
         width: '25px',
         }}><button onClick={handlelPress}>x</button></div>
             </div>

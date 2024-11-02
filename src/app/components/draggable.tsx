@@ -5,6 +5,8 @@ import React from "react";
 import Image from "next/image";
 import blue from './blue.png';
 
+
+
 interface IToDraggable {
     items: string;
 }
@@ -16,10 +18,11 @@ const FruitDragable: FC<IToDraggable> = (props) => {
     });
 
     return(
+        // post it background
         <div
         ref={setNodeRef}
         style={{transform: CSS.Translate.toString(transform),
-            backgroundColor:`var(--color3)`,
+            backgroundColor:`var(--color3)`,  
             zIndex:30,
         }}
         {...attributes}
@@ -40,6 +43,7 @@ const FruitDragable: FC<IToDraggable> = (props) => {
   fontFamily: `'Times New Roman', Times, serif`,
             backgroundImage: `url(${blue})`,
     backgroundSize: 'cover',
+
     
    
     }}>{props.items}</div>
