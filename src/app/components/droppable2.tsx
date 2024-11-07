@@ -115,19 +115,30 @@ const remove = (taskname:string) =>{
    let string1;
    string1=c.toString();
     string1=string1+"%";
+
+
+    
+   const leng = taskList.tasks.length;
+  const len=leng*55;
+   let string2;
+   string2=len.toString();
+   string2=string2+"px";
   
     return(
         <>
-        <div id="spiral" ref={setNodeRef}
+        <div  ref={setNodeRef}
         style={{
             width: '190px', // Increase the width of the droppable area
             height: '300px', // Increase the height of the droppable area
              position: 'fixed',
-             marginLeft:'22px',
-             
+             marginLeft:'22px',            
              
           }}
         >
+
+            <div id="spiral" style={{width:'190px',height:'300px',}}>
+            
+
             {/* progress bar for in progress */}
          <p style={{fontWeight: 'bold', textAlign: 'center', 
             zIndex:4,position:'absolute', top:'45px', left:'0px',  width: '100%',
@@ -145,18 +156,21 @@ const remove = (taskname:string) =>{
         <>
                         
                           <input style={{width:'95%', marginTop:'75px',marginLeft:'5px', backgroundColor:"rgba(65, 138, 195, 0)",  border:'1px solid black', borderRadius:'5px',}} onChange={updateResponse} value={response} onKeyDown={handleKeyPress} placeholder="Type Here" />
-
-
+                           
+                           {/* background of checkboxes */}
+                          <div style={{backgroundColor:'#f5f9fa', marginTop:'3px', width:'190px', height:string2, borderRadius:'10px',}}>
 {!prepList && (
     <>
     {taskList.tasks.map((task, i) => <li style={{backgroundColor:"rgb(255,255,255,0)", width:'100px', marginLeft:'4px', }} key={i}><Aabha name={task} append={append} remove={remove} lremove={lremove}  check={checkingList.tasks} tasks={taskList.tasks} trial= {task}/></li>
     )}</>
 
-)}
+)}</div>
 </>
 )}
 
 
+
+</div>
 </div>
 
 </>

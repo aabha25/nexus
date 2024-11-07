@@ -137,8 +137,19 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
           string1=c.toString();
            string1=string1+"%";
 
+
+           const leng = taskList.tasks.length;
+           const len=leng*55;
+            let string2;
+            string2=len.toString();
+            string2=string2+"px";
+
+           
+       
+
     return(
         <>
+        
         <div id="spiral" ref={setNodeRef}
         style={{
             width: '190px', // Increase the width of the droppable area
@@ -149,6 +160,9 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
              
           }}
         >
+
+            
+            
             {/* progress bar of preparing */}
          <p  style={{fontWeight: 'bold', textAlign: 'center', 
             zIndex:4,position:'absolute', top:'45px', left:'0px',  width: '100%',
@@ -161,17 +175,24 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
         <p style={{backgroundColor: checkBox ? 'rgba(3, 90, 252, 0.8)': 'rgba(255, 0, 0, 0)', color: checkBox ? 'rgba(3, 90, 252, 0)' : 'rgba(255, 0, 0, 0)',zIndex:3,position:'absolute',
              top:'45px', width: '95%', borderRadius:'5px', marginLeft:'5px', width:prepList? '0%':string1,
              }}> hi
-        </p> 
+        </p>
         {checkBox && (
         <>
                     <input style={{width:'95%', marginTop:'75px',marginLeft:'5px', backgroundColor:"rgba(65, 138, 195, 0)", border:'1px solid black', borderRadius:'5px', }} onChange={updateResponse} value={response} onKeyDown={handleKeyPress} placeholder="Type Here" />
+
+                    {/* background of checkboxes */}
+                    <div style={{backgroundColor:'#f5f9fa', marginTop:'3px', width:'190px', height:string2, borderRadius:'10px',}}>
+
+
 
                     {!prepList && (
     <>
     {taskList.tasks.map((task, i) => <li style={{backgroundColor:"rgba(65, 138, 195, 0)", width:'100px',marginLeft:'4px',}} key={i}><Aabha name={task} append={append} remove={remove} lremove={lremove}  check={checkingList.tasks} tasks={taskList.tasks} trial= {task}/></li>
     )}</>
+   
 
 )}
+</div>
                     </>
       )}
        
