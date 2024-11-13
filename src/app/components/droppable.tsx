@@ -157,7 +157,7 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
             width: '190px', // Increase the width of the droppable area
             height: '300px', // Increase the height of the droppable area
              position: 'absolute',
-             top:'280px',
+             top:'260px',
              marginRight:'22px',
              
              backgroundImage: checkBox?`url(${spiral.src})`:``,
