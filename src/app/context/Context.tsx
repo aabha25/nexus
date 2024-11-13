@@ -15,9 +15,9 @@ interface DialogContextType {
     setResponse: (response: string) => void;
     response: string;
     dstring: number;
-    dstring2: string;
+    dstring2: number;
     setDstring: (dstring: number) => void;
-    setDstring2: (dstring2: string) => void;
+    setDstring2: (dstring2: number) => void;
     updateResponse: (event: React.ChangeEvent<HTMLInputElement>) => void;
     taskList: { tasks: string[] };
     editTask: (taskList: { tasks: string[] }) => void;
@@ -61,8 +61,8 @@ interface DialogContextType {
     setProgTasks: (progTasks: string) => { },
     dstring: 0,
     setDstring: (dstring: number) => { },
-    dstring2: '',
-    setDstring2: (dstring2: string) => { },
+    dstring2: 0,
+    setDstring2: (dstring2: number) => { },
     addPrepItem: function (event: DragEndEvent): void {
       throw new Error('Function not implemented.');
     },
@@ -76,7 +76,7 @@ interface DialogContextType {
 const DialogProvider = ({ children }: { children: React.ReactNode }) => {
   const [openDialog, setOpen] = useState(false);
   const [dstring, setDstring] = useState (0);
-  const [dstring2, setDstring2] = useState ("");
+  const [dstring2, setDstring2] = useState (0);
   const [checkBox,setBox] = useState (false);
   const [checkBox2,setBox2] = useState (false);
   const afterDrag = () =>{

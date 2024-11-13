@@ -17,7 +17,7 @@ const CartDroppable2: FC<ICartDroppable2> = (props) => {
     });
 
    
-    const {progTasks,setProgTasks} = useContext(DialogContext);
+    const {progTasks,setProgTasks,setDstring2} = useContext(DialogContext);
     const{checkBox2,afterDrag2,doneTask,editdTask}=useContext(DialogContext);
     const [checkingList, setCheckingList] = useState({
         tasks: [],
@@ -120,9 +120,11 @@ const remove = (taskname:string) =>{
     
    const leng = taskList.tasks.length;
   const len=leng*55;
+
    let string2;
    string2=len.toString();
    string2=string2+"px";
+   setDstring2(len+150);
   
     return(
         <>
@@ -136,7 +138,8 @@ const remove = (taskname:string) =>{
         style={{
             width: '190px', // Increase the width of the droppable area
             height: '300px', // Increase the height of the droppable area
-             position: 'fixed',
+             position: 'absolute',
+             top:'280px',
              marginRight:'22px',
              
              backgroundImage: checkBox2?`url(${spiral.src})`:``,  

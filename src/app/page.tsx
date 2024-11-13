@@ -51,14 +51,14 @@ function Todorow() {
    
    const {addPrepItem,addDoneItem} = useContext(DialogContext);
    const {preppedTask,doneTask} = useContext(DialogContext);
-   const{afterDrag,dstring} = useContext(DialogContext);
+   const{afterDrag,dstring,dstring2} = useContext(DialogContext);
    
    
   
    const leng = Math.max(taskList.tasks.length,Math.max(doneTask.length,preppedTask.length));
    //const leng = Math.max(dstring,lengt);
   const len=leng*81;
-    const lengt = Math.max(len,dstring);
+    const lengt = Math.max(dstring2,Math.max(len,dstring));
    let string1;
    string1=lengt.toString();
    string1=string1+"px";

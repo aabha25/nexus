@@ -140,12 +140,12 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
 
            const leng = taskList.tasks.length;
            const len=leng*55;
-           const len2 = leng*55;
+        
             let string2;
             string2=len.toString();
             string2=string2+"px";
 
-           setDstring(len2+150);
+           setDstring(len+150);
            
        
 
