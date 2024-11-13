@@ -17,7 +17,7 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
     });
 
    
-    const {checkBox} = useContext(DialogContext); 
+    const {checkBox,dstring,setDstring} = useContext(DialogContext); 
     const { preppedTask,editpTask,prepTasks,setPrepTask} = useContext(DialogContext);//a thing that lives in context, updated when checkingList length is 0
    //no need to import as context, can live here as
     const [checkingList, setCheckingList] = useState({
@@ -140,10 +140,12 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
 
            const leng = taskList.tasks.length;
            const len=leng*55;
+           const len2 = leng*55;
             let string2;
             string2=len.toString();
             string2=string2+"px";
 
+           setDstring(len2+150);
            
        
 
@@ -154,7 +156,8 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
         style={{
             width: '190px', // Increase the width of the droppable area
             height: '300px', // Increase the height of the droppable area
-             position: 'fixed',
+             position: 'absolute',
+             top:'280px',
              marginRight:'22px',
              
              backgroundImage: checkBox?`url(${spiral.src})`:``,

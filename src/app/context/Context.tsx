@@ -14,6 +14,10 @@ interface DialogContextType {
     handleCloseDialog: () => void;
     setResponse: (response: string) => void;
     response: string;
+    dstring: number;
+    dstring2: string;
+    setDstring: (dstring: number) => void;
+    setDstring2: (dstring2: string) => void;
     updateResponse: (event: React.ChangeEvent<HTMLInputElement>) => void;
     taskList: { tasks: string[] };
     editTask: (taskList: { tasks: string[] }) => void;
@@ -55,6 +59,10 @@ interface DialogContextType {
     setPrepTask: (prepTasks: string) => { },
     progTasks: '',
     setProgTasks: (progTasks: string) => { },
+    dstring: 0,
+    setDstring: (dstring: number) => { },
+    dstring2: '',
+    setDstring2: (dstring2: string) => { },
     addPrepItem: function (event: DragEndEvent): void {
       throw new Error('Function not implemented.');
     },
@@ -67,6 +75,8 @@ interface DialogContextType {
 
 const DialogProvider = ({ children }: { children: React.ReactNode }) => {
   const [openDialog, setOpen] = useState(false);
+  const [dstring, setDstring] = useState (0);
+  const [dstring2, setDstring2] = useState ("");
   const [checkBox,setBox] = useState (false);
   const [checkBox2,setBox2] = useState (false);
   const afterDrag = () =>{
@@ -142,7 +152,7 @@ const DialogProvider = ({ children }: { children: React.ReactNode }) => {
       };
       
   return (
-    <DialogContext.Provider value={{ openDialog,afterDrag2,checkBox,progTasks,setProgTasks,checkBox2,preppedTask,doneTask,editdTask,setpTask(preppedTask) {}, preplist,editpTask, addDoneItem,afterDrag,handleClick,handleClick2, handleCloseDialog,setResponse, response, updateResponse, taskList,addPrepItem, editTask,prepTasks,setPrepTask}}>
+    <DialogContext.Provider value={{ dstring,setDstring,dstring2,setDstring2,openDialog,afterDrag2,checkBox,progTasks,setProgTasks,checkBox2,preppedTask,doneTask,editdTask,setpTask(preppedTask) {}, preplist,editpTask, addDoneItem,afterDrag,handleClick,handleClick2, handleCloseDialog,setResponse, response, updateResponse, taskList,addPrepItem, editTask,prepTasks,setPrepTask}}>
       {children}
     </DialogContext.Provider>
   );
