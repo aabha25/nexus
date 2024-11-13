@@ -275,8 +275,8 @@ li{  /*list of postits*/
 /*spiral page*/
 #spiral
 {
-  background-image: url("./spiral.png");
-  background-color: var(--color3);
+  
+  background-color: var(--color4);
   background-position: center;
   background-size: cover;
 

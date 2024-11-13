@@ -1,11 +1,11 @@
 import {useDroppable} from "@dnd-kit/core";
 import {FC, SetStateAction, useEffect} from 'react';
-import { DialogProvider, DialogContext } from 'C:/Users/Rashmi Abhyankar/Desktop/web/kanban2/kb/src/app/context/Context';
+import { DialogProvider, DialogContext } from '../context/Context';
 
 import { useContext} from 'react';
 import { useState } from "react";
 
-
+import spiral from './spiralcopy.png';
 
 interface ICartDroppable2 {
     items: string ;
@@ -126,12 +126,20 @@ const remove = (taskname:string) =>{
   
     return(
         <>
-        <div  ref={setNodeRef}
+        <div   style={{
+        
+             
+             backgroundImage: `url(${spiral.src})`,  
+             
+          }}></div>
+        <div id="spiral" ref={setNodeRef}
         style={{
             width: '190px', // Increase the width of the droppable area
             height: '300px', // Increase the height of the droppable area
              position: 'fixed',
-             marginLeft:'22px',            
+             marginRight:'22px',
+             
+             backgroundImage: checkBox2?`url(${spiral.src})`:``,  
              
           }}
         >

@@ -1,11 +1,11 @@
 import {useDroppable} from "@dnd-kit/core";
 import {FC, SetStateAction, useEffect} from 'react';
-import { DialogProvider, DialogContext } from 'C:/Users/Rashmi Abhyankar/Desktop/web/kanban2/kb/src/app/context/Context';
+import { DialogProvider, DialogContext } from '../context/Context';
 
 import { useContext} from 'react';
 import { useState } from "react";
 
-
+import spiral from './spiral.png';
 
 interface ICartDroppable {
     items: string ;
@@ -156,44 +156,47 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
             height: '300px', // Increase the height of the droppable area
              position: 'fixed',
              marginRight:'22px',
-             backgroundColor:"rgba(65, 138, 195, 1)",
+             
+             backgroundImage: checkBox?`url(${spiral.src})`:``,
              
           }}
         >
 
-            
-            
-            {/* progress bar of preparing */}
-         <p  style={{fontWeight: 'bold', textAlign: 'center', 
-            zIndex:4,position:'absolute', top:'45px', left:'0px',  width: '100%',
-            backgroundColor: 'rgba(255, 0, 0, 0)',}}>{prepTasks}
-        </p> 
-        <p style={{backgroundColor: checkBox ? '#5ec5ee' : 'rgba(255, 0, 0, 0)', color: checkBox ? '#5ec5ee' : 'rgba(255, 0, 0, 0)',zIndex:2,position:'absolute',
-             top:'45px', width: '95%', borderRadius:'5px', marginLeft:'5px',
-             }}> hi
-        </p> 
-        <p style={{backgroundColor: checkBox ? 'rgba(3, 90, 252, 0.8)': 'rgba(255, 0, 0, 0)', color: checkBox ? 'rgba(3, 90, 252, 0)' : 'rgba(255, 0, 0, 0)',zIndex:3,position:'absolute',
-             top:'45px', width: '95%', borderRadius:'5px', marginLeft:'5px', width:prepList? '0%':string1,
-             }}> hi
-        </p>
-        {checkBox && (
-        <>
-                    <input style={{width:'95%', marginTop:'75px',marginLeft:'5px', backgroundColor:"rgba(65, 138, 195, 0)", border:'1px solid black', borderRadius:'5px', }} onChange={updateResponse} value={response} onKeyDown={handleKeyPress} placeholder="Type Here" />
+{checkBox && (<><>
 
-                    {/* background of checkboxes */}
-                    <div style={{backgroundColor:'#f5f9fa', marginTop:'3px', width:'190px', height:string2, borderRadius:'10px',}}>
+                    {/* progress bar of preparing */}
+                    <p style={{
+                        fontWeight: 'bold', textAlign: 'center',
+                        zIndex: 4, position: 'absolute', top: '45px', left: '0px', width: '100%',
+                        backgroundColor: 'rgba(255, 0, 0, 0)',
+                    }}>{prepTasks}
+                    </p>
+                    <p style={{
+                        backgroundColor: checkBox ? '#5ec5ee' : 'rgba(255, 0, 0, 0)', color: checkBox ? '#5ec5ee' : 'rgba(255, 0, 0, 0)', zIndex: 2, position: 'absolute',
+                        top: '45px', width: '95%', borderRadius: '5px', marginLeft: '5px',
+                    }}> hi
+                    </p>
+                    <p style={{
+                        backgroundColor: checkBox ? 'rgba(3, 90, 252, 0.8)' : 'rgba(255, 0, 0, 0)', color: checkBox ? 'rgba(3, 90, 252, 0)' : 'rgba(255, 0, 0, 0)', zIndex: 3, position: 'absolute',
+                        top: '45px', maxWidth: '95%', borderRadius: '5px', marginLeft: '5px', width: prepList ? '0%' : string1,
+                    }}> hi
+                    </p></><>
+                        <input style={{ width: '95%', marginTop: '75px', marginLeft: '5px', backgroundColor: "rgba(65, 138, 195, 0)", border: '1px solid black', borderRadius: '5px', }} onChange={updateResponse} value={response} onKeyDown={handleKeyPress} placeholder="Type Here" />
+
+                        {/* background of checkboxes */}
+                        <div style={{ backgroundColor: '#f5f9fa', marginTop: '3px', width: '190px', height: string2, borderRadius: '10px', }}>
 
 
 
-                    {!prepList && (
-    <>
-    {taskList.tasks.map((task, i) => <li style={{backgroundColor:"rgba(65, 138, 195, 0)", width:'100px',marginLeft:'4px',}} key={i}><Aabha name={task} append={append} remove={remove} lremove={lremove}  check={checkingList.tasks} tasks={taskList.tasks} trial= {task}/></li>
-    )}</>
-   
+                            {!prepList && (
+                                <>
+                                    {taskList.tasks.map((task, i) => <li style={{ backgroundColor: "rgba(65, 138, 195, 0)", width: '100px', marginLeft: '4px', }} key={i}><Aabha name={task} append={append} remove={remove} lremove={lremove} check={checkingList.tasks} tasks={taskList.tasks} trial={task} /></li>
+                                    )}</>
 
-)}
-</div>
-                    </>
+
+                            )}
+                        </div>
+                    </></>
       )}
        
        
