@@ -49,10 +49,10 @@ const ColourPick: React.FC<ColourPickProps> = () => {
             document.documentElement.style.setProperty('--color3', '#a358d3' );}
             const handleClickteal = () =>{
                 
-                document.documentElement.style.setProperty('--color3', '#008080' );
+                document.documentElement.style.setProperty('--color3', '#66b2b2' );
                 }
        const handleClickyellow = () =>{
-        document.documentElement.style.setProperty('--color3', '#f5ad00' );
+        document.documentElement.style.setProperty('--color3', '#e9b14d' );
        }
       
       const closePicker = () =>{
@@ -70,8 +70,9 @@ const ColourPick: React.FC<ColourPickProps> = () => {
         <button onClick={handleClickpurple} className="grid-item"style={{border:"3px solid black",backgroundColor:'#a8329e',
          
         }}></button>
-        <button onClick={handleClickgreen} className="grid-item"style={{border:"3px solid black",
-         backgroundColor:'#32a852'
+       
+         <button onClick={handleClickred} className="grid-item"style={{border:"3px solid black",
+         backgroundColor:'#f56942'
           
         }}></button>
         <button onClick={handleClickblue} className="grid-item"style={{border:"3px solid black",
@@ -91,12 +92,13 @@ const ColourPick: React.FC<ColourPickProps> = () => {
          backgroundColor:'#f16192'
           
         }}></button>
-        <button onClick={handleClickteal} className="grid-item"style={{border:"3px solid black",
-         backgroundColor:'#008080'
+        
+        <button onClick={handleClickgreen} className="grid-item"style={{border:"3px solid black",
+         backgroundColor:'#32a852'
           
         }}></button>
-        <button onClick={handleClickred} className="grid-item"style={{border:"3px solid black",
-         backgroundColor:'#f56942'
+        <button onClick={handleClickteal} className="grid-item"style={{border:"3px solid black",
+         backgroundColor:'#66b2b2'
           
         }}></button>
     </div>

@@ -155,12 +155,12 @@ const remove = (taskname:string) =>{
             zIndex:4,position:'absolute', top:'45px', left:'0px',  width: '100%',
             backgroundColor: 'rgba(255, 0, 0, 0)',}}>{progTasks}
         </p> 
-<p style={{backgroundColor: checkBox2 ? '#5ec5ee' : 'rgba(255, 0, 0, 0)', color: checkBox2 ? '#5ec5ee' : 'rgba(255, 0, 0, 0)',zIndex:2,position:'absolute',
-             top:'45px', width: '95%', borderRadius:'5px', marginLeft:'5px',
+<p style={{backgroundColor: checkBox2 ?  'var(--color3)' : 'rgba(255, 0, 0, 0)', color: 'rgba(255, 0, 0, 0)',zIndex:2,position:'absolute',
+             top:'45px', width: '95%', borderRadius:'5px', marginLeft:'5px',filter: 'brightness(1.4)',
              }}> hi
         </p> 
-        <p style={{backgroundColor: checkBox2 ? 'rgba(3, 90, 252, 0.8)': 'rgba(255, 0, 0, 0)', color: checkBox2 ? 'rgba(3, 90, 252, 0)' : 'rgba(255, 0, 0, 0)',zIndex:3,position:'absolute',
-             top:'45px', width: '95%', borderRadius:'5px', marginLeft:'5px', width:prepList? '0%':string1,
+        <p style={{backgroundColor: checkBox2 ?  'var(--color3)': 'rgba(255, 0, 0, 0)', color:  'rgba(255, 0, 0, 0)',zIndex:3,position:'absolute',
+             top:'45px', maxWidth: '95%', borderRadius:'5px', marginLeft:'5px', width:prepList? '0%':string1, filter: 'contrast(0.8)',mixBlendMode:'multiply'
              }}> hi
         </p> 
         {checkBox2 && (

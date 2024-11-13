@@ -1,6 +1,7 @@
 import {useDroppable} from "@dnd-kit/core";
 import {FC, SetStateAction, useEffect} from 'react';
 import { DialogProvider, DialogContext } from '../context/Context';
+import '../globals.css';
 
 import { useContext} from 'react';
 import { useState } from "react";
@@ -175,13 +176,13 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
                     }}>{prepTasks}
                     </p>
                     <p style={{
-                        backgroundColor: checkBox ? '#5ec5ee' : 'rgba(255, 0, 0, 0)', color: checkBox ? '#5ec5ee' : 'rgba(255, 0, 0, 0)', zIndex: 2, position: 'absolute',
-                        top: '45px', width: '95%', borderRadius: '5px', marginLeft: '5px',
+                        backgroundColor: checkBox ?  'var(--color3)' : 'rgba(255, 0, 0, 0)', color: 'rgba(255, 0, 0, 0)', zIndex: 2, position: 'absolute',
+                        top: '45px', width: '95%', borderRadius: '5px', marginLeft: '5px',  filter: 'brightness(1.4)',
                     }}> hi
                     </p>
                     <p style={{
-                        backgroundColor: checkBox ? 'rgba(3, 90, 252, 0.8)' : 'rgba(255, 0, 0, 0)', color: checkBox ? 'rgba(3, 90, 252, 0)' : 'rgba(255, 0, 0, 0)', zIndex: 3, position: 'absolute',
-                        top: '45px', maxWidth: '95%', borderRadius: '5px', marginLeft: '5px', width: prepList ? '0%' : string1,
+                        backgroundColor: checkBox ? 'var(--color3)' : 'rgba(255, 0, 0, 0)', color: checkBox ? 'rgba(3, 90, 252, 0)' : 'rgba(255, 0, 0, 0)', zIndex: 3, position: 'absolute',
+                        top: '45px', maxWidth: '95%', borderRadius: '5px', marginLeft: '5px', width: prepList ? '0%' : string1, filter: 'contrast(0.8)',mixBlendMode:'multiply'
                     }}> hi
                     </p></><>
                         <input style={{ width: '95%', marginTop: '75px', marginLeft: '5px', backgroundColor: "rgba(65, 138, 195, 0)", border: '1px solid black', borderRadius: '5px', }} onChange={updateResponse} value={response} onKeyDown={handleKeyPress} placeholder="Type Here" />

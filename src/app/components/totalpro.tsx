@@ -32,11 +32,11 @@ const TotalPro: React.FC<TotalProProps> = () => {
     // Event handlers can be defined here
    
     useEffect(()=>{
-        console.log(doneTask.length);
-        console.log(preppedTask.length);
-        console.log(taskList.tasks.length);
-        console.log(prog);
-        console.log(prep);
+        //console.log(doneTask.length);
+        //console.log(preppedTask.length);
+        //console.log(taskList.tasks.length);
+        //console.log(prog);
+        //console.log(prep);
       
         if(total===0) string1="0%";
       });
@@ -76,13 +76,13 @@ const TotalPro: React.FC<TotalProProps> = () => {
                 }}><input value={response} onChange={updateResponse}placeholder="Type Project Name Here" /></div><button style={{position:"absolute",top:"24px"}}onClick={() => {if(response!=""){setIsNew(false);setName(response);}else alert("Project name cannot be empty")}}>Done</button></>)}
         </p>
         <p style={{
-          backgroundColor: 'lightblue', color: 'rgba(255, 0, 0, 0)', height: "100%", zIndex: 2, position: 'absolute',
-          top: '0px', width: '100%',
+          backgroundColor: 'var(--color3)', color: 'rgba(255, 0, 0, 0)', height: "100%", zIndex: 2, position: 'absolute',
+          top: '0px', width: '100%', filter: 'brightness(1.4)',
         }}> hi
         </p>
         <p style={{
-          backgroundColor: 'rgba(3, 90, 252, 0.8)', color: 'rgba(255, 0, 0, 0)', height: "100%", zIndex: 3, position: 'absolute',
-          top: '0px', width: string1,
+          backgroundColor: 'var(--color3)', color: 'rgba(255, 0, 0, 0)', height: "100%", zIndex: 3, position: 'absolute',
+          top: '0px', width: string1, filter: 'contrast(0.8)',mixBlendMode:'multiply'
         }}> hi
         </p> </div></>
     );
