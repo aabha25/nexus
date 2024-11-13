@@ -266,8 +266,8 @@ li{  /*list of postits*/
 #bluepostit{
   height: 100px;
   width: 105px;  
-  background-image: url("./blue.png");
-  background-color: var(--color3);
+  
+  background-color: var(--color4);
   background-position: center;  
   margin: 10px;
   display: flex;
