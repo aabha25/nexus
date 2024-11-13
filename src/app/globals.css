@@ -7,10 +7,31 @@
   --color1: #502907;
   --color2: #F9D2AF;
   --color3: rgba(65, 138, 195, 1);
+  --color4: rgba(65, 138, 195, 0);
 }
 *{
   background-color: var(--color3);
+
   
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  grid-template-rows: repeat(2, 100px); /* 2 rows, each 100px tall */
+  gap: 10px; /* Space between grid items */
+  padding: 10px;
+}
+
+.grid-item {
+  /* Green background */
+  color: black; /* White text */
+  text-align: center; /* Center text */
+  padding: 20px; /* Some padding */
+ 
+  border-color: black;
+  border-width: 1px; /* Rounded corners */
 }
 .dialog-box {
   position: absolute;
@@ -25,6 +46,20 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: 50%;
   height: 50%;
+}
+.dialog-box2 {
+  position: absolute;
+  top:75%;
+  left:75%;
+  transform: translate(-50%, -50%);
+  z-index: 1000; /* adjust the z-index to a higher value if needed */
+  background-color: var(--color1);
+  padding: 20px;
+  border: 5px solid black;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 40%;
+  height: 45%;
 }
 .elem {
  
@@ -233,7 +268,7 @@ li{  /*list of postits*/
 #bluepostit{
   height: 100px;
   width: 105px;  
-  background-image: url("./blue.png");
+  /*background-image: url("./plain.png");*/
   background-color: var(--color3);
   background-position: center;  
   margin: 10px;

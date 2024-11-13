@@ -78,7 +78,7 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
         const remove = (taskname:string) =>{
   
             const index = checkingList.tasks.findIndex((tab) => tab === taskname);
-            console.log("checkingList index"+index);
+            //console.log("checkingList index"+index);
             if(index!=-1){
             const nlist = [...checkingList.tasks.slice(0, index), ...checkingList.tasks.slice(index + 1)];
             setCheckingList({
@@ -92,7 +92,7 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
         //the useEffect
         useEffect(() => {
           
-           console.log("checkingList"+checkingList.tasks);
+           //console.log("checkingList"+checkingList.tasks);
            
           
            if((!prepList)&&(checkingList.tasks.length===0)){
@@ -109,14 +109,14 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
           
           );
           useEffect(()=>{
-            console.log("tasklist"+taskList.tasks);
+            //console.log("tasklist"+taskList.tasks);
           },[taskList.tasks]);
 
           const lremove = (taskname:string) =>{
            
 
             const index = taskList.tasks.findIndex((tab) => tab === taskname);
-            console.log("tasklist Index"+index);
+            //console.log("tasklist Index"+index);
          
            const nlist = [...taskList.tasks.slice(0, index), ...taskList.tasks.slice(index + 1)];
             editTask({
@@ -150,7 +150,7 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
     return(
         <>
         
-        <div id="spiral" ref={setNodeRef}
+        <div id="spiral" id="spiral" ref={setNodeRef}
         style={{
             width: '190px', // Increase the width of the droppable area
             height: '300px', // Increase the height of the droppable area
@@ -160,9 +160,6 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
              
           }}
         >
-
-            
-            
             {/* progress bar of preparing */}
          <p  style={{fontWeight: 'bold', textAlign: 'center', 
             zIndex:4,position:'absolute', top:'45px', left:'0px',  width: '100%',
@@ -173,16 +170,13 @@ const CartDroppable: FC<ICartDroppable> = (props) => {
              }}> hi
         </p> 
         <p style={{backgroundColor: checkBox ? 'rgba(3, 90, 252, 0.8)': 'rgba(255, 0, 0, 0)', color: checkBox ? 'rgba(3, 90, 252, 0)' : 'rgba(255, 0, 0, 0)',zIndex:3,position:'absolute',
-             top:'45px', width: '95%', borderRadius:'5px', marginLeft:'5px', width:prepList? '0%':string1,
+             top:'45px', maxWidth: '95%', borderRadius:'5px', marginLeft:'5px', width:prepList? '0%':string1,
              }}> hi
         </p>
         {checkBox && (
-        <>
-                    <input style={{width:'95%', marginTop:'75px',marginLeft:'5px', backgroundColor:"rgba(65, 138, 195, 0)", border:'1px solid black', borderRadius:'5px', }} onChange={updateResponse} value={response} onKeyDown={handleKeyPress} placeholder="Type Here" />
-
-                    {/* background of checkboxes */}
-                    <div style={{backgroundColor:'#f5f9fa', marginTop:'3px', width:'190px', height:string2, borderRadius:'10px',}}>
-
+        <><div>
+                    w
+                       <div style={{width:'95%', marginTop:'75px',marginLeft:'5px', backgroundColor:"rgba(65, 138, 195, 0)", border:'1px solid black', borderRadius:'5px',}}> <input style={{width:'100%',}} onChange={updateResponse} value={response} onKeyDown={handleKeyPress} placeholder="Type Here" /></div>
 
 
                     {!prepList && (

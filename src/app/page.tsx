@@ -12,6 +12,8 @@ import CartDroppable from "./components/droppable";
 import FruitDragable from "./components/draggable";
 import { after } from "node:test";
 import CartDroppable2 from "./components/droppable2";
+import TotalPro from "./components/totalpro";
+import ColourPick from "./components/colorpick";
 
 
 
@@ -22,7 +24,7 @@ export default function Home()
   return (
     <><></><Navbar />
     <DialogProvider>
-    <TotalPro />
+    <TotalPro />  <ColourPick/>
     <table className="heading">
       <tbody>
       <tr className="title1">
@@ -36,6 +38,7 @@ export default function Home()
     </table>
    
     <Todorow/></DialogProvider>
+   
     
     
     
