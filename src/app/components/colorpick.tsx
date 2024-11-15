@@ -63,7 +63,7 @@ const ColourPick: React.FC<ColourPickProps> = () => {
    
     // The component's render output
     return (
-        <><button onClick={handleClick3}>Themes
+        <><button style={{color: 'var(--color2)', backgroundColor: 'var(--color1)',marginLeft:'15px',height:'45px',width:'90px'}}onClick={handleClick3}>Themes
         </button>
         {modalOpen && (<div className='dialog-box2'><center>Select Colour</center>
         <div className="grid-container">
